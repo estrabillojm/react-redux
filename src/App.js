@@ -7,18 +7,17 @@ import { useState } from "react";
 
 const App = () =>{
     const users = useSelector(state => state.users)
+    // state is in the store.js
+    
     const [name, setName] = useState('')
     const [id, setId] = useState('')
     const dispatch = useDispatch()
-
-
     const data =  { nameThree: name, nameTwo: name, nameOne: name}
-    const handleClick = async (type) =>{
+    const handleClick = (type) =>{
         if(type === 'name'){
             dispatch(setUserInfo({ name: data}))
             return true
         }
-
         if(type === 'age'){
             dispatch(setUserInfo({ age: 27}))
             console.log(users)
@@ -26,14 +25,11 @@ const App = () =>{
         }
         dispatch(setUserInfo({ gender: "Male"}))
     }
-
     console.log("USERS", users)
-
     const handleGetId = async ()=>{
         dispatch(deleteUser({id: id}))
-        await console.log(users)
+        console.log(users)
     }
-
     return (
         <div>
             <input type="text" value={name} onChange={(e)=>setName(e.target.value)}/>
